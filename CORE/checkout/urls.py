@@ -5,5 +5,5 @@ from . views import checkout
 app_name = 'checkout'
 
 urlpatterns = [
-     ('checkout/',views.checkout, name="index"),
+    path('checkout/',views.checkout,name="index"),
 ]
