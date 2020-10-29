@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from . views import Home
-from cart.views import add_to_cart,remove_from_cart,
+from cart.views import (add_to_cart ,remove_from_cart)
 
 app_name = 'products'
  

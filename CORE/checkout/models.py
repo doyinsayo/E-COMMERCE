@@ -4,6 +4,9 @@ from django.contrib.auth import get_user_model
 
 # Create your models here.
 
+# Get the user model
+User = get_user_model()
+
 class BillingAddress(models.Model):
     
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
