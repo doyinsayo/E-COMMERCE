@@ -13,6 +13,7 @@ class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+    purchased = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
 
 
@@ -21,8 +22,10 @@ class Cart(models.Model):
 
     # Getting the total price 
     def get_total(self):
-        return self.item.price * self.quantity    
-
+        total = self.item.price * self.quantity
+        floattotal = float("{0:.2f}".format(total))
+        return floattotal
+        
 # Order Model
 class Order(models.Model):
     orderitems  = models.ManyToManyField(Cart)
