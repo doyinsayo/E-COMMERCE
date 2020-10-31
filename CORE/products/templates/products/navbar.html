@@ -22,7 +22,7 @@
       </li>
       {% if request.user.is_authenticated %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'mainapp:cart-home' %}">
+        <a class="nav-link" href="{% url 'products:cart-home' %}">
           <i class="fa fa-shopping-cart"></i> Cart
           <span class="badge badge-light">{{ request.user| cart_total }}</span>
         </a>

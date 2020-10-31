@@ -40,7 +40,7 @@ def checkout(request):
 	return render(request, 'checkout/index.html', context)
 
 def payment(request):
-    key = settings.STRIPE_PUBLISHABLE_KEY
+    #key = settings.STRIPE_PUBLISHABLE_KEY
 	order_qs = Order.objects.filter(user= request.user, ordered=False)
 	order_total = order_qs[0].get_totals() 
 	totalCents = float(order_total * 100);

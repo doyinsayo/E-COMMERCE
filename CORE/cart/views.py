@@ -1,5 +1,8 @@
-from django.shortcuts import render
 from django.contrib import messages
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView
+from .models import Cart, Order
+from products.models import Product
 
 # Create your views here.
 
@@ -9,7 +12,7 @@ def add_to_cart(request, slug):
     item = get_object_or_404(Product, slug=slug)
     order_item, created = Cart.objects.get_or_create(
         item=item,
-        user=request.user
+        user=request.user,
         purchased=False
     )
     order_qs = Order.objects.filter(user=request.user, ordered=False)
@@ -20,17 +23,17 @@ def add_to_cart(request, slug):
             order_item.quantity += 1
             order_item.save()
             messages.info(request, "This item quantity was updated.")
-            return redirect("products:home")
+            return redirect("products:cart-home")
         else:
             order.orderitems.add(order_item)
             messages.info(request, "This item was added to your cart.")
-            return redirect("products:home")
+            return redirect("products:cart-home")
     else:
         order = Order.objects.create(
             user=request.user)
         order.orderitems.add(order_item)
         messages.info(request, "This item was added to your cart.")
-        return redirect("products:home")
+        return redirect("products:cart-home")
 
 # Remove item from cart
 def remove_from_cart(request, slug):
@@ -81,7 +84,7 @@ def CartView(request):
 		
     else:
         messages.warning(request, "You do not have an active order")
-        return redirect("core:home")        
+        return redirect("products:home")        
 
 def decreaseCart(request, slug):
     item = get_object_or_404(Product, slug=slug)
