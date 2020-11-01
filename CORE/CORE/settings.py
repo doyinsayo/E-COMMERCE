@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'checkout',
     'django_filters',
     'crispy_forms',
+    'django_countries',
 ]
 
 # Template Pack initilization

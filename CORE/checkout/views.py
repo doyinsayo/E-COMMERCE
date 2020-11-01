@@ -3,6 +3,8 @@ from .models import BillingForm
 # Import Stripe
 import stripe
 from django.conf import settings
+from django_countries.fields import CountryField
+from django_countries.widgets import CountrySelectWidget
 
 # Create your views here.
 
