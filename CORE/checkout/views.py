@@ -1,10 +1,17 @@
 from django.shortcuts import render
-from .models import BillingForm
-# Import Stripe
+from .models import BillingForm,BillingAddress
 import stripe
 from django.conf import settings
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
+from django.utils.crypto import get_random_string
+from django.contrib import messages
+from django.shortcuts import render, get_object_or_404, redirect
+from cart.models import Order, Cart
+from django.views.generic.base import TemplateView
+
+stripe.api_key = settings.STRIPE_SECRET_KEY 
+
 
 # Create your views here.
 
@@ -44,6 +51,7 @@ def checkout(request):
 def payment(request):
     #key = settings.STRIPE_PUBLISHABLE_KEY
 	order_qs = Order.objects.filter(user= request.user, ordered=False)
+	key = settings.STRIPE_PUBLISHABLE_KEY
 	order_total = order_qs[0].get_totals() 
 	totalCents = float(order_total * 100);
 	total = round(totalCents, 2)
