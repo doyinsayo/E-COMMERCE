@@ -1,6 +1,4 @@
 from django.db import models
-
-# Create your models here.
 from django.contrib.auth import get_user_model
 from products.models import Product
 
@@ -32,6 +30,16 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+    paymentId = models.CharField(max_length=200, blank=True , null=True)
+    orderId = models.CharField(max_length=200, blank=True, null=True)
+    
 
     def __str__(self):
-        return self.user.username        
+        return self.user.username  
+
+    def get_totals(self):
+        total = 0
+        for order_item in self.orderitems.all():
+            total += order_item.get_total()
+        
+        return total          

@@ -85,7 +85,7 @@ def charge(request):
 			for item in cartItems:
 				item.purchased = True
 				item.save()
-		return render(request, 'checkout/charge.html')      
+		return render(request, 'checkout/charge.html',{"items": orderitems, "order": order })      
 
 def OrderView(request):
     

@@ -28,9 +28,15 @@
         </a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="accounts/">
+        <a class="nav-link" href="#">
           <i class="fas fa-user-tie"></i> {{ request.user.username }}
         </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Dashboard</a>
+          <a class="dropdown-item" href="{% url 'checkout:OrderView' %}">Orders</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
       </li>
       {% else %}
        <li class="nav-item">

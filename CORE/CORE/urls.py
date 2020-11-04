@@ -18,6 +18,11 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 
+admin.site.site_header = 'E-commerce Administration'
+admin.site.site_title = 'E-commerce Administration'
+admin.site.index_title = 'E-commerce Admin'
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
