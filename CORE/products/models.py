@@ -19,10 +19,8 @@ class  Product(models.Model):
     mainimage = models.ImageField(upload_to='products/', blank=True)
     name = models.CharField(max_length=300)
     slug = models.SlugField()
-    #category = models.ForeignKey(Category,choices=CATEGORY_CHOICES, on_delete=models.CASCADE)
     preview_text = models.TextField(max_length=200, verbose_name='Preview Text')
     detail_text = models.TextField(max_length=1000, verbose_name='Detail Text')
-    #label = models.CharField(choices=LABEL_CHOICES,max_length=1,null=True)
     price = models.FloatField()
     
 
